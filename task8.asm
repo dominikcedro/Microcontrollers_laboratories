@@ -15,10 +15,10 @@
 .equ maskA = 0xf0
 .equ maskB = 0x0f
 
-.equ message1 = 0xf0
-.equ message2 = 0x0f
+.equ message1 = 0x0f
+.equ message2 = 0xf0
 .equ message12 = 0xff
-.equ message0 = 0x80 ; 0b10000000
+.equ message0 = 0x7f ; 0b01111111
 
 start: ldi r16, 0xff
 		out ddrc, r16
