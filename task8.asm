@@ -27,6 +27,7 @@ start: ldi r16, 0xff
 		out ddrb, r16
 
 buttons_push:  in r16, pinb
+				com r16
 				mov r17, r16
 
 check_none: ldi r17, 0x00 ; check if r17 is equal to 0x00
@@ -48,17 +49,21 @@ check_both: jmp group12 ; if none of previous conditions were met, I know that b
 
 
 groupA:  ldi r16, message1 ; i use defined message here and below
+com r16
 		 out portc, r16
 		 jmp buttons_push
 
 groupB:   ldi r16, message2
+		com r16
 		 out portc, r16
 		 jmp buttons_push
 
 group0: ldi r16, message0
+
 		 out portc, r16
 		 jmp buttons_push
 
 group12:ldi r16, message12
+com r16
 		 out portc, r16
 		 jmp buttons_push
