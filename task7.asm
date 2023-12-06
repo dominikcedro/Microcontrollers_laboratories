@@ -11,10 +11,11 @@ jmp start
 start: ldi r16, 0xff
 	   out ddrc, r16 ; ddrc is set to one, so pin c becomes OUTPUT
 	   ldi r18, 0xff
-	   ldi r16, 0
+	   ldi r16, 0x00
 	   out ddrb, r16 ; ddrb is set to 0 so pin B becomes input
 
 loop: in r16, pinb ; read a sequence representing pins
+    ori r16, 0x0f ; mask off rest of buttons (lower nibble)
 	  rol r16
 	  out portc, r16
 	  jmp loop
