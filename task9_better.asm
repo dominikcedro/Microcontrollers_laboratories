@@ -56,7 +56,8 @@ check_incorrect: cp r17, r20 ; basically if carry is set the r17 should be zero,
 				brne message_incorrect
 
 
-message_correct: out portc, r21 ; if its not zero, it's a good message
+message_correct: com r21
+out portc, r21 ; if its not zero, it's a good message
 				mov r21, r20
 				mov r19, r20 ; i zero these values
 				jmp check_button
