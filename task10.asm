@@ -22,11 +22,25 @@
 jmp start
 .org 0x46
 
-start: .equ number = 0b1111011
+start: .equ number = 0xDF
 		ldi r16, number
-		ldi r20, 0b01100100
+		ldi r20, 0b01100100 ; 100 in binary
+		ldi r21, 0b1010
+		ldi r22,0b0001
 
-loop100: subi r16, 0b01100100 ; 100 in binary
+loop100: sub r16, r20 ; 100 in binary
 		inc r17
-		cp r20, r16
-		brlo loop100
+		cp r16, r20
+		brsh loop100
+
+loop10: sub r16,r21
+		inc r18
+		cp r16, r21
+		brsh loop10
+
+loop1: sub r16, r22
+		inc r19
+		cp r16,r22
+		brsh loop1
+
+		; now i will have numbers of 100s in r17, 10s in r18, 1s in r19
