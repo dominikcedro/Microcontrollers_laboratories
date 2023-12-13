@@ -41,6 +41,7 @@ start: ldi r16, 0xff
 
 ;how to check which button is pressed?
 check_button: in r16, pinb ; insert pinb input (buttons)
+com r16
 			mov r17, r16 ; this is work register, so r16 is not changed
 			cp r17, r20
 			breq message_correct
@@ -62,7 +63,7 @@ out portc, r21 ; if its not zero, it's a good message
 				mov r19, r20 ; i zero these values
 				jmp check_button
 
-message_incorrect: ldi r16, 0x80 ; this has to be done
+message_incorrect: ldi r16, 0b01111111 ; this has to be done
 					out portc, r16
 					mov r21, r20
 					mov r19, r20
