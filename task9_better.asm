@@ -1,10 +1,10 @@
 ;
 ; micro_task9.asm
-;
 ; Created: 12/2/2023 9:48:54 PM
 ; Author : Dominik
 ; edit -- 13.12.2023
 
+; later change the layout of loops and turn it into subroutine
 
 start: ldi r16, 0xff
 		out ddrc, r16
