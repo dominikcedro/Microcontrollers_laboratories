@@ -32,6 +32,7 @@ loop100: sub r16, r20 ; 100 in binary
 		inc r17
 		cp r16, r20
 		brsh loop100
+; in this case there also should be test function written
 
 loop10: sub r16,r21
 		inc r18
