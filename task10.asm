@@ -35,13 +35,19 @@ s_routine: ; this routine recieves a number stored in hex/binary
 		ldi r21, 0b1010
 		ldi r22,0b0001
 
-loop100: sub r16, r20 ; 100 in binary
+loop100: cpi r16, 0
+		breq end
+		cp r16, r20
+		brlo loop10
+		sub r16, r20 ; 100 in binary
 		inc r17
 		cp r16, r20
 		brsh loop100
 
 loop10: cpi r16, 0
 		breq end
+		cp r16, r21
+		brlo loop1
 		sub r16,r21
 		inc r18
 		cp r16, r21
