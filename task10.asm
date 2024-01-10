@@ -40,15 +40,21 @@ loop100: sub r16, r20 ; 100 in binary
 		cp r16, r20
 		brsh loop100
 
-loop10: sub r16,r21
+loop10: cpi r16, 0
+		breq end
+		sub r16,r21
 		inc r18
 		cp r16, r21
 		brsh loop10
 
-loop1: sub r16, r22
+loop1: cpi r16, 0
+		breq end
+		sub r16, r22
 		inc r19
 		cp r16,r22
 		brsh loop1
+
+end:
 ret
 
 
