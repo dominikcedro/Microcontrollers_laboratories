@@ -5,19 +5,8 @@
 ; Author : Dominik Cedro
 ;this is a task prepared for microcontrollers laboratories
 
-;idea is
-; i have a number that has 3 digits
-;i create three loops: 100s, 10s, 1s
-; loop100: subtract from original number 100
-;increment r17 which is 100s register
-; check if it is smaller than 100
-; if is not, loop again
-
-; the same for the other two digits, then i will have binary form in registers r17 (100), r18(10), r19(1s)
-
-
 .equ stack_bottom=0x500
-.set number = 0xDF
+.set number = 100
 
 .cseg
 .org 0
@@ -32,19 +21,15 @@ start:
 	out SPH,r23
 	
 	call s_routine
-	ldi r25, 0x69
-	call test_routine
-	jmp pc
-
-
-
-			
 	
-	;after calling routine registers r17-r19 should change 
+	call test_routine
+	jmp pc	
 
 .org 0x200 ; subroutine adress
 
-s_routine:
+s_routine: ; this routine recieves a number stored in hex/binary
+		   ; and returns this number in BCD format in three regs
+		   ; r17-hundreds, r18-tens, r19-unities
 		ldi r16, number
 		ldi r20, 0b01100100 ; 100 in binary
 		ldi r21, 0b1010
@@ -70,30 +55,29 @@ ret
 .org 300
 
 test_routine: ; this s_routine check the original routine
-			  ; if it's successful then r25 = 0x11
-			  ;if it's not then r25 = 0xff
-		.set number = 0xDF
-		.set unities = 0x03
-		.set tens = 0x02
+			  ; if it's successful then r25 = 0x03
+			  ;if it's not then r25 < 0x03
+		.set number = 0xFF
+		.set unities = 0x05
+		.set tens = 0x05
 		.set hundreds = 0x02
+
+check_hundreds:
 		cpi r17, hundreds
 		brne failure
+		inc r25
 
 check_tens:
 		cpi r18, tens
 		brne failure
+		inc r25
 
 check_unities:
 		cpi r19, unities
 		brne failure
+		inc r25
 
-success:
-		ldi r25,0x11
+failure: 
 
-failure:
-		ldi r25, 0xff
 
 ret
-
-
-		; now i will have numbers of 100s in r17, 10s in r18, 1s in r19
