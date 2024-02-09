@@ -26,4 +26,4 @@ During my course I was provided with tasks to solve. Below I summarized them.
 </p>
 
 ### Plans for the future?
-I really liked learning Assembly due to low level characteristics of this language. I think I will continue to learn it with more interesting challenges. Those files will be added here then.
+I really liked solving tasks with Assembly. I think I will continue to learn it with more interesting challenges. Those files will be added here then.
