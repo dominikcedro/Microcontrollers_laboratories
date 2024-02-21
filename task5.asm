@@ -4,11 +4,6 @@
 ; Created: 11/29/2023 9:56:25 AM
 ; Author : Dominik Cedro
 
-;this is solution to task 5 from list of tasks
-
-
-
-  
 ; my array = [0b00001101, 0b00001110, 0b00001111, 0b00001100, 0xff]
 ;0b00001101, 	D turn to 0b00001101 D
 ;0b00001110,	E turn to 0b11111101 Fe
